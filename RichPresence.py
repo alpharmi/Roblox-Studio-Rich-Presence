@@ -4,6 +4,7 @@ import time
 import os
 import PIL.Image
 import ctypes
+import requests
 
 host, port = "127.0.0.1", 24981
 clientId = "1029652193193762816"
@@ -36,7 +37,7 @@ def trayOnClick(icon, item):
     time.sleep(3)
     os._exit(0)
 
-iconImage = PIL.Image.open("./logo.png")
+iconImage = PIL.Image.open(requests.get("https://raw.githubusercontent.com/alpharmi/Roblox-Studio-Rich-Presence/main/logo.png", stream=True).raw)
 trayIcon = pystray.Icon("RobloxStudioRichPresence", iconImage, menu=pystray.Menu(
     pystray.MenuItem("Close", trayOnClick)
 ))
