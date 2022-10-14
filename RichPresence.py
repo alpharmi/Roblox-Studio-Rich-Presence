@@ -3,10 +3,10 @@ import json
 import time
 import os
 import PIL.Image
+import ctypes
 
 host, port = "127.0.0.1", 24981
 clientId = "1029652193193762816"
-exitToggled = False
 
 #check pypresence install
 print("Checking for PyPresence & PyStray")
@@ -30,17 +30,20 @@ startTime = time.time()
 #minimize
 def trayOnClick(icon, item):
     trayIcon.stop()
-    global exitToggled
-    exitToggled = True
+    os.system('cls')
+    ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 1)
+    print("Closing...")
+    time.sleep(3)
+    os._exit(0)
 
 iconImage = PIL.Image.open("./logo.png")
 trayIcon = pystray.Icon("RobloxStudioRichPresence", iconImage, menu=pystray.Menu(
     pystray.MenuItem("Close", trayOnClick)
 ))
-trayIcon.run_detached()
-
 print("Roblox Studio Rich Presence started. Minimizing to tray in 3s.")
 time.sleep(3)
+ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 0)
+trayIcon.run_detached()
 
 
 #server
@@ -50,9 +53,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server:
     server.listen()
 
     while 1:
-        if exitToggled:
-            break
-
         connection, adress = server.accept()
         
         data = connection.recv(1024).decode("utf-8").splitlines()[11]
