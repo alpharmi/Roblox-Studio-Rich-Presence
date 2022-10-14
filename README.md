@@ -1,4 +1,4 @@
-# Roblox-Studio-Discord-Presence
+# Roblox-Studio-Rich-Presence
 
 Show what your editing in Roblox Studio on Discord via Rich Presence.
 
