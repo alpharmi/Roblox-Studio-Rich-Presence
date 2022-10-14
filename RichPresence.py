@@ -4,24 +4,26 @@ import time
 import os
 import PIL.Image
 import ctypes
-import requests
 
 host, port = "127.0.0.1", 24981
 clientId = "1029652193193762816"
 
 #check pypresence install
-print("Checking for PyPresence & PyStray")
+print("Checking for PyPresence, PyStray, and Requests.")
 try:
     from pypresence import Presence
     import pystray
+    import requests
 except:
-    print("PyPresence or PyStray isn't installed. Installing...")
+    print("PyPresence, PyStray, or Requests isn't installed. Installing...")
     os.system("py -m pip install "+ "pystray")
     os.system("py -m pip install "+ "pypresence")
+    os.system("py -m pip install "+ "requests")
     os.system('cls')
-    print("PyPresence and PyStray installed.")
+    print("PyPresence, PyStray, and Requests are installed.")
     from pypresence import Presence
     import pystray
+    import requests
 
 #discord
 richPresence = Presence(clientId)
