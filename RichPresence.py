@@ -2,7 +2,6 @@ import socket
 import json
 import time
 import os
-import PIL.Image
 import ctypes
 
 host, port = "127.0.0.1", 24981
@@ -14,16 +13,19 @@ try:
     from pypresence import Presence
     import pystray
     import requests
+    import PIL.Image
 except:
-    print("PyPresence, PyStray, or Requests isn't installed. Installing...")
+    print("PyPresence, PyStray, Requests, or Pillow aren't installed. Installing...")
     os.system("py -m pip install "+ "pystray")
     os.system("py -m pip install "+ "pypresence")
     os.system("py -m pip install "+ "requests")
+    os.system("py -m pip install "+ "pillow")
     os.system('cls')
-    print("PyPresence, PyStray, and Requests are installed.")
+    print("PyPresence, PyStray, Requests, and Pillow are installed.")
     from pypresence import Presence
     import pystray
     import requests
+    import PIL.Image
 
 #discord
 richPresence = Presence(clientId)
